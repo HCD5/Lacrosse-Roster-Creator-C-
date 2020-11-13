@@ -12,7 +12,7 @@ public:
 	void setName(string);
 	string getName();
 
-private:
+protected:
 	string name;
 };
 

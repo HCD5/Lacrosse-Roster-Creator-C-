@@ -153,9 +153,11 @@
   <ItemGroup>
     <ClCompile Include="LaxRoster.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Person.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,7 +8,7 @@ using namespace std;
 
 //Default Constructor
 Person::Person() {
-	string name = "Not Entered";
+	name = "Not Entered";
 }
 
 //Constructor
