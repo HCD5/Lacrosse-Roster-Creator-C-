@@ -5,6 +5,7 @@ using namespace std;
 
 #include "Person.h"
 #include "Player.h"
+#include "Coach.h"
 
 //Main Meathod 
 int main()
@@ -20,6 +21,14 @@ int main()
 	joe.setPosition(2);
 
 	cout << joe.getName() << " " << joe.getNum() << " " << joe.getYear() << " " << joe.getPosition() << endl;
+
+
+	Coach boe;
+
+	boe.setName("Boe");
+	boe.setPosition(2);
+
+	cout << boe.getName() << " " << boe.getPosition() << endl;
 
 /////////////////////////////////// TESTING ///////////////////////////////////
 

@@ -7,7 +7,6 @@ using namespace std;
 #include "Person.h"
 
 class Coach : public Person {
-
 public:
 	Coach();
 	void setPosition(int);

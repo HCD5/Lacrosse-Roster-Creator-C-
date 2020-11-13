@@ -12,10 +12,10 @@ public:
 	Player();
 	void setNum(int);
 	void setYear(int);
+	void setPosition(int);
 	int getNum();
 	string getYear();
-	void setPosition(int);
-	
+
 private:
 	int num;
 	string year;
