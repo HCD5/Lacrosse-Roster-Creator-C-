@@ -7,21 +7,10 @@ using namespace std;
 #include "Person.h"
 
 //Default Constructor
-Person::Person() {
-	name = "Not Entered";
-}
-
-//Constructor
-Person::Person(string n) {
-	name = n;
-}
+Person::Person() { name = "Not Entered"; }
 
 //Set name of person
-void Person::setName(string n) {
-	name = n;
-}
+void Person::setName(string n) { name = n; }
 
 //Return name
-string Person::getName() {
-	return name;
-}
+string Person::getName() { return name; }

@@ -8,7 +8,6 @@ class Person {
 
 public:
 	Person();
-	Person(string);
 	void setName(string);
 	string getName();
 
