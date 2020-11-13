@@ -151,11 +151,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Coach.cpp" />
     <ClCompile Include="LaxRoster.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Coach.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
