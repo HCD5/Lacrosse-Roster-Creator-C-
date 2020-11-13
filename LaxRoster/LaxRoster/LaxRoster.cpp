@@ -1,8 +1,15 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
+#include "Person.h"
+
+//Main Meathod 
 int main()
 {
-    std::cout << "Hello World!\n";
-}
+	Person joe("Weenie man");
 
+	cout << joe.getName() << endl;
+
+}
