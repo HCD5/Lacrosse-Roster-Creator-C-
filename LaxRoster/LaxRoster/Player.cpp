@@ -11,7 +11,6 @@ Player::Player() {
 	name = "Weenie man";
 	num = -1;
 	year = "UN";
-	position = "UN";
 }
 
 ///// Mutators /////
@@ -20,17 +19,56 @@ Player::Player() {
 void Player::setNum(int nmbr) { num = nmbr; }
 
 //Sets players year
-void Player::setYear(string yr) { year = yr; }
+void Player::setYear(int input) { 
+	switch (input) {
+	case 1:
+		year = "Freshmen";
+		break;
+	case 2:
+		year = "Sophmore";
+		break;
+	case 3:
+		year = "Junior";
+		break;
+	case 4:
+		year = "Senior";
+		break;
+	case 5:
+		year = "Graduate";
+		break;
+	default:
+		year = "Not Entered";
+	}
+}
 
-//Sets players position
-void Player::setPosition(string pos) { position = pos }
+//Sets player position
+void Player::setPosition(int input) {
+	switch (input) {
+	case 1:
+		position = "Attack";
+		break;
+	case 2:
+		position = "Mid-Field";
+		break;
+	case 3:
+		position = "Faceoff";
+		break;
+	case 4:
+		position = "Defense";
+		break;
+	case 5: 
+		position = "Goalie";
+		break;
+	default: 
+		position = "Not Entered";
+	}
+}
 
 ///// Accessors /////
 
 //Returns player Number
 int Player::getNum() { return num; }
+
 //Returns player year
 string Player::getYear() { return year; }
 
-//Returns position
-string Player::getPosition() { return position; }

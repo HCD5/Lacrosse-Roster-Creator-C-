@@ -11,16 +11,14 @@ class Player : public Person {
 public:
 	Player();
 	void setNum(int);
-	void setYear(string);
-	void setPosition(string);
+	void setYear(int);
 	int getNum();
 	string getYear();
-	string getPosition();
+	void setPosition(int);
 	
 private:
 	int num;
 	string year;
-	string position;
 };
 
 #endif

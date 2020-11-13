@@ -16,8 +16,8 @@ int main()
 
 	joe.setName("Joe");
 	joe.setNum(52);
-	joe.setYear("SR");
-	joe.setPosition("AT");
+	joe.setYear(2);
+	joe.setPosition(2);
 
 	cout << joe.getName() << " " << joe.getNum() << " " << joe.getYear() << " " << joe.getPosition() << endl;
 

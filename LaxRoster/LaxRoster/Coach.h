@@ -9,8 +9,8 @@ using namespace std;
 class Coach : public Person {
 
 public:
-
-private:
-
+	Coach();
+	void setPosition(int);
+};
 
 #endif
