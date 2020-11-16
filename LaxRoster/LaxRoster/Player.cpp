@@ -8,9 +8,10 @@ using namespace std;
 
 //Construtor
 Player::Player() {
-	name = "Weenie man";
+	name = "Not Entered";
 	num = -1;
 	year = "UN";
+	position = "Not Entered";
 }
 
 ///// Mutators /////
