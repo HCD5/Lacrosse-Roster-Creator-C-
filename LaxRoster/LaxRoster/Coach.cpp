@@ -7,7 +7,8 @@ using namespace std;
 
 //Constructor
 Coach::Coach() {
-	position = "Coach";
+	name = "Not Entered";
+	position = "Not Entered";
 }
 
 //Sets Coach position
