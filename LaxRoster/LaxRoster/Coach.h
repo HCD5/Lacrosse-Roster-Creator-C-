@@ -10,6 +10,7 @@ class Coach : public Person {
 public:
 	Coach();
 	void setPosition(int);
+	void printCoach();
 };
 
 #endif

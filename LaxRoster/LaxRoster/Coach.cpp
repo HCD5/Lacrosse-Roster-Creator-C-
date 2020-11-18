@@ -28,6 +28,11 @@ void Coach::setPosition(int input) {
 	}
 }
 
+//Prints Coaches info
+void Coach::printCoach() {
+	cout << name << " " << position << endl;
+}
+
 
 
 

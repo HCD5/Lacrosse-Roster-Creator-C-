@@ -73,3 +73,8 @@ int Player::getNum() { return num; }
 //Returns player year
 string Player::getYear() { return year; }
 
+//Prints players info
+void Player::printPlayer() {
+	cout << name << " " << num << " " << year << " " << position << endl;
+}
+
