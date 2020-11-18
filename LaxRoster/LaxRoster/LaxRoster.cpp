@@ -31,34 +31,6 @@ int main()
 
 	printRoster(Players, Coaches);
 
-/////////////////////////////////// TESTING ///////////////////////////////////
-
-	/*
-
-	Player joe;
-
-	joe.setName("Joe");
-	joe.setNum(52);
-	joe.setYear(2);
-	joe.setPosition(2);
-
-	cout << joe.getName() << " " << joe.getNum() << " " << joe.getYear() << " " << joe.getPosition() << endl;
-
-
-	Coach boe;
-
-	boe.setName("Boe");
-	boe.setPosition(2);
-
-	cout << boe.getName() << " " << boe.getPosition() << endl;
-
-	cout << endl;
-
-	*/
-
-
-/////////////////////////////////// TESTING ///////////////////////////////////
-
 }
 
 //Prints menu asking to add player or coach
