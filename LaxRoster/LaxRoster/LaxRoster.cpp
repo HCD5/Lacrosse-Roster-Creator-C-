@@ -9,10 +9,10 @@ using namespace std;
 #include "Coach.h"
 
 //Function prototypes
-void playerOrCoach(vector<Player>&, vector<Coach>&);
+bool playerOrCoach(vector<Player>&, vector<Coach>&);
 void addPlayer(vector<Player>&);
 void addCoach(vector<Coach>&);
-void printRoster();
+void printRoster(vector<Player>, vector<Coach>);
 
 //Main Meathod 
 int main()
@@ -20,12 +20,20 @@ int main()
 	//Declare variables
 	vector<Player> Players;
 	vector<Coach> Coaches;
+	bool print = false;
 
-	//Print main menu
-	playerOrCoach(Players, Coaches);
+	//Program loop
+	do {
+		//Print main menu
+		print = playerOrCoach(Players, Coaches);
 
+	} while (print == false);
+
+	printRoster(Players, Coaches);
 
 /////////////////////////////////// TESTING ///////////////////////////////////
+
+	/*
 
 	Player joe;
 
@@ -46,16 +54,19 @@ int main()
 
 	cout << endl;
 
+	*/
+
 
 /////////////////////////////////// TESTING ///////////////////////////////////
 
 }
 
 //Prints menu asking to add player or coach
-void playerOrCoach(vector<Player>& p, vector<Coach>& c) {
+bool playerOrCoach(vector<Player>& p, vector<Coach>& c) {
 	//Number inputted by user and data validation flag
 	int num;
 	bool valid;
+	bool print = false;
 
 	//Data validation loop
 	do {
@@ -80,6 +91,7 @@ void playerOrCoach(vector<Player>& p, vector<Coach>& c) {
 			addCoach(c);
 			break;
 		case 3:
+			print = true;
 			break;
 		default :
 			cout << "The number you entered was incorrect, please try again." << endl;
@@ -89,19 +101,100 @@ void playerOrCoach(vector<Player>& p, vector<Coach>& c) {
 
 	} while (valid == false);
 
+	return print;
+
 }
 
 //Adds player to the roster
-void addPlayer(vector<Player>&) {
+void addPlayer(vector<Player>& p) {
+	// Create temporary player to add to players vector, and variables
+	Player temp;
+	string name;
+	int number;
+	int input;
+
+	//Player name
+	cout << "Please enter the players full name: " << endl;
+	cin.ignore();
+	getline(cin, name);
+	temp.setName(name);
+
+	//Player number
+	cout << "Please enter the players number: " << endl;
+	cin >> number;
+	temp.setNum(number);
+
+	//Player position
+	cout << "Please enter the number corresponding with the players position:" << endl;
+	cout << "1: Attack" << endl;
+	cout << "2: Mid-Field" << endl;
+	cout << "3: Faceoff" << endl;
+	cout << "4: Defense" << endl;
+	cout << "5: Goalie" << endl;
+	cout << "Enter Number: " << endl;
+	cin >> input;
+	temp.setPosition(input);
+	
+	//Player year
+	cout << "Please enter the number corresponding with the players year:" << endl;
+	cout << "1: Freshmen" << endl;
+	cout << "2: Sophmore" << endl;
+	cout << "3: Junior" << endl;
+	cout << "4: Senior" << endl;
+	cout << "5: Graduate" << endl;
+	cout << "Enter Number: " << endl;
+	cin >> input;
+	temp.setYear(input);
+
+	//Add temp to Players vector
+	p.push_back(temp);
 
 }
 
 //Adds coach to the roster
-void addCoach(vector<Coach>&) {
+void addCoach(vector<Coach>& c) {
+	//Create temporary Coach to ass To Coaches vector, and other variables
+	Coach temp;
+	string name;
+	int input;
+
+	//Coach Name
+	cout << "Please enter the coaches full name: " << endl;
+	cin.ignore();
+	getline(cin, name);
+	temp.setName(name);
+
+	//Coach position
+	cout << "Please enter the number corresponding with the Coaches position:" << endl;
+	cout << "1: Head" << endl;
+	cout << "2: Assistant" << endl;
+	cout << "3: Graduate" << endl;
+	cout << "Enter Number: " << endl;
+	cin >> input;
+	temp.setPosition(input);
+
+	//Add temp to Coaches vector
+	c.push_back(temp);
 
 }
 
 //Prints roster 
-void printRoster() {
+void printRoster(vector<Player> p, vector<Coach> c) {
+	//Print players
+	cout << "Players" << endl;
+	cout << "---------------------------" << endl;
+	for (int i = 0; i < p.size(); i++) {
+		p.at(i).printPlayer();
+	}
+
+	cout << endl;
+
+	//Print coaches
+	cout << "Coaches" << endl;
+	cout << "---------------------------" << endl;
+	for (int i = 0; i < c.size(); i++) {
+		c.at(i).printCoach();
+	}
+
 
 }

@@ -15,6 +15,7 @@ public:
 	void setPosition(int);
 	int getNum();
 	string getYear();
+	void printPlayer();
 
 private:
 	int num;
