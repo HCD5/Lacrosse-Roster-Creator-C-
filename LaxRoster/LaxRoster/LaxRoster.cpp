@@ -317,7 +317,7 @@ int validNumber(int max) {
 
 //Validates if a inputed number for a menu option is to large or small
 int validMenuNumber(int max, int num) {
-	//If number is valid (A value of -1 for nax means any value is valid
+	//If number is valid (A value of -1 for max means any value is valid
 	if (((num >= 1) && (num <= max)) || (max == -1)) {
 		return num;
 	}
