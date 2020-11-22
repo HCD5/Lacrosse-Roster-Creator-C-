@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <vector>
 using namespace std;
@@ -15,7 +16,9 @@ void addCoach(vector<Coach>&);
 void printRoster(vector<Player>&, vector<Coach>);
 void sortRoster(vector<Player>&);
 void switchSpot(Player&, Player&);
-int findPlayer(vector<Player>, int, int, int);
+int findPlayer(vector<Player>, int, int, int);\
+bool searchForPlayer(vector<Player>);
+
 
 //Main function
 int main()
@@ -24,31 +27,22 @@ int main()
 	vector<Player> Players;
 	vector<Coach> Coaches;
 	bool print = false;
+	bool repeat = false;
 
-	//Program loop
+	//Loop for adding players and coaches
 	do {
-		//Print main menu
 		print = playerOrCoach(Players, Coaches);
 
 	} while (print == false);
 
+	//Print roster whn user is done adding players and coaches
 	printRoster(Players, Coaches);
 
-////////////////////////////////// Testing //////////////////////////////////
+	//Loop for searching for players
+	do {
+		repeat = searchForPlayer(Players);
 
-	int playerNum;
-	int playerIndex;
-
-	cout << "Please enter in the number of a player and well give you there name :" << endl;
-	cin >> playerNum;
-
-	playerIndex = findPlayer(Players, 0, Players.size() - 1, playerNum);
-
-	cout << "This players name is: " << Players.at(playerIndex).getName() << endl;
-
-
-////////////////////////////////// Testing //////////////////////////////////
-
+	} while (repeat == true);
 
 }
 
@@ -69,9 +63,11 @@ bool playerOrCoach(vector<Player>& p, vector<Coach>& c) {
 		cout << "1: Player" << endl;
 		cout << "2: Coach" << endl;
 		cout << "3: Finished/Print Roster" << endl;
+		cout << "Enter Number: " << endl;
 
 		//Input
 		cin >> num;
+		cout << endl;
 
 		//Check input
 		switch (num) {
@@ -109,14 +105,17 @@ void addPlayer(vector<Player>& p) {
 	cin.ignore();
 	getline(cin, name);
 	temp.setName(name);
+	cout << endl;
 
 	//Player number
 	cout << "Please enter the players number: " << endl;
 	cin >> number;
 	temp.setNum(number);
+	cout << endl;
 
 	//Player position
 	cout << "Please enter the number corresponding with the players position:" << endl;
+	cout << "----------------------------------------------------------------" << endl;
 	cout << "1: Attack" << endl;
 	cout << "2: Mid-Field" << endl;
 	cout << "3: Faceoff" << endl;
@@ -125,9 +124,11 @@ void addPlayer(vector<Player>& p) {
 	cout << "Enter Number: " << endl;
 	cin >> input;
 	temp.setPosition(input);
+	cout << endl;
 	
 	//Player year
 	cout << "Please enter the number corresponding with the players year:" << endl;
+	cout << "------------------------------------------------------------" << endl;
 	cout << "1: Freshmen" << endl;
 	cout << "2: Sophmore" << endl;
 	cout << "3: Junior" << endl;
@@ -136,6 +137,7 @@ void addPlayer(vector<Player>& p) {
 	cout << "Enter Number: " << endl;
 	cin >> input;
 	temp.setYear(input);
+	cout << endl;
 
 	//Add temp to Players vector
 	p.push_back(temp);
@@ -154,15 +156,18 @@ void addCoach(vector<Coach>& c) {
 	cin.ignore();
 	getline(cin, name);
 	temp.setName(name);
+	cout << endl;
 
 	//Coach position
 	cout << "Please enter the number corresponding with the Coaches position:" << endl;
+	cout << "----------------------------------------------------------------" << endl;
 	cout << "1: Head" << endl;
 	cout << "2: Assistant" << endl;
 	cout << "3: Graduate" << endl;
 	cout << "Enter Number: " << endl;
 	cin >> input;
 	temp.setPosition(input);
+	cout << endl;
 
 	//Add temp to Coaches vector
 	c.push_back(temp);
@@ -176,7 +181,9 @@ void printRoster(vector<Player>& p, vector<Coach> c) {
 
 	//Print players
 	cout << "Players" << endl;
-	cout << "---------------------------" << endl;
+	cout << "-----------------------------------------------------" << endl;
+	cout << left << setw(20) << "Name" << setw(8) << "Number" << setw(8) << "Year" << setw(10) << "Position" <<endl;
+	cout << "-----------------------------------------------------" << endl;
 	for (int i = 0; i < p.size(); i++) {
 		p.at(i).printPlayer();
 	}
@@ -185,10 +192,15 @@ void printRoster(vector<Player>& p, vector<Coach> c) {
 
 	//Print coaches
 	cout << "Coaches" << endl;
-	cout << "---------------------------" << endl;
+	cout << "-----------------------------------------------------" << endl;
+	cout << left << setw(20) << "Name" << "Position" << endl;
+	cout << "-----------------------------------------------------" << endl;
 	for (int i = 0; i < c.size(); i++) {
 		c.at(i).printCoach();
 	}
+	cout << endl;
+	cout << endl;
+	cout << endl;
 
 }
 
@@ -234,4 +246,59 @@ int findPlayer(vector<Player> p, int lower, int upper, int num) {
 			return findPlayer(p, mid + 1, upper, num);
 		}
 	}
+	return -1;
+}
+
+//Allows user to enter players number and find there name
+bool searchForPlayer(vector<Player> p) {
+	//Delare variables
+	int playerNum;
+	int playerIndex;
+	int input;
+	bool repeat = false;
+
+
+
+	cout << "Would you like to search for a player?" << endl;
+	cout << "--------------------------------------------" << endl;
+	cout << "1: Yes" << endl;
+	cout << "2: No" << endl;
+	cout << "Enter Number :" << endl;
+	cin >> input;
+	cout << endl;
+
+	//Check user decision
+	switch (input)
+	{
+	case 1:
+		cout << "Please enter a players number to get there name: " << endl;
+		cin >> playerNum;
+		playerIndex = findPlayer(p, 0, p.size() - 1, playerNum);
+		cout << endl;
+
+		//See if the number entered corresponds to a player
+		if (playerIndex == -1) {
+			cout << "There is no player with the number " << playerNum << endl;
+			cout << endl;
+		}
+		else {
+			cout << playerNum << ":" << " " << p.at(playerIndex).getName() << endl;
+			cout << endl;
+		}
+
+
+		repeat = true;
+		break;
+	case 2:
+		cout << "Program will now close" << endl;
+		repeat = false;
+		break;
+	default:
+		cout << "Invalid entry, please try again" << endl;
+		cout << endl;
+		repeat = true;
+		break;
+	}
+
+	return repeat;
 }

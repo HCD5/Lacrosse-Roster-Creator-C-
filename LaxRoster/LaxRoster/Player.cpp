@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -77,6 +78,6 @@ string Player::getYear() { return year; }
 
 //Prints players info
 void Player::printPlayer() {
-	cout << name << " " << num << " " << year << " " << position << endl;
+	cout << left << setw(20) << name << setw(8) << num << setw(8) << year << setw(10) << position << endl;
 }
 

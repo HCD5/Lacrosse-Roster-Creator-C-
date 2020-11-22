@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 #include "Coach.h"
@@ -30,7 +31,7 @@ void Coach::setPosition(int input) {
 
 //Prints Coaches info
 void Coach::printCoach() {
-	cout << name << " " << position << endl;
+	cout << left << setw(20) << name << position << endl;
 }
 
 
