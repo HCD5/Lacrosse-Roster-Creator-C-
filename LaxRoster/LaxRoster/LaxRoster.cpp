@@ -12,9 +12,10 @@ using namespace std;
 bool playerOrCoach(vector<Player>&, vector<Coach>&);
 void addPlayer(vector<Player>&);
 void addCoach(vector<Coach>&);
-void printRoster(vector<Player>, vector<Coach>);
+void printRoster(vector<Player>&, vector<Coach>);
 void sortRoster(vector<Player>&);
 void switchSpot(Player&, Player&);
+int findPlayer(vector<Player>, int, int, int);
 
 //Main function
 int main()
@@ -32,6 +33,22 @@ int main()
 	} while (print == false);
 
 	printRoster(Players, Coaches);
+
+////////////////////////////////// Testing //////////////////////////////////
+
+	int playerNum;
+	int playerIndex;
+
+	cout << "Please enter in the number of a player and well give you there name :" << endl;
+	cin >> playerNum;
+
+	playerIndex = findPlayer(Players, 0, Players.size() - 1, playerNum);
+
+	cout << "This players name is: " << Players.at(playerIndex).getName() << endl;
+
+
+////////////////////////////////// Testing //////////////////////////////////
+
 
 }
 
@@ -153,7 +170,7 @@ void addCoach(vector<Coach>& c) {
 }
 
 //Prints roster 
-void printRoster(vector<Player> p, vector<Coach> c) {
+void printRoster(vector<Player>& p, vector<Coach> c) {
 	//Sort players
 	sortRoster(p);
 
@@ -190,7 +207,9 @@ void sortRoster(vector<Player>& p) {
 		}
 	}
 
-}//Switches the place of 2 players on the roster.
+}
+
+//Switches the place of 2 players on the roster.
 void switchSpot(Player& a, Player& b) {
 	Player temp;
 	temp = a;
@@ -198,3 +217,21 @@ void switchSpot(Player& a, Player& b) {
 	b = temp;
 }
 
+//Searches for player by number using a binary serch and returns index
+int findPlayer(vector<Player> p, int lower, int upper, int num) {
+	while (lower <= upper) {
+		//Midpoint 
+		int mid = (lower + upper) / 2;
+
+		//Check values
+		if (p.at(mid).getNum() == num) {
+			return mid;
+		}
+		if (p.at(mid).getNum() > num) {
+			return findPlayer(p, lower, mid - 1, num);
+		}
+		if (p.at(mid).getNum() < num) {
+			return findPlayer(p, mid + 1, upper, num);
+		}
+	}
+}
