@@ -78,6 +78,6 @@ string Player::getYear() { return year; }
 
 //Prints players info
 void Player::printPlayer() {
-	cout << left << setw(20) << name << setw(8) << num << setw(8) << year << setw(10) << position << endl;
+	cout << left << setw(20) << name << setw(8) << num << setw(11) << year << setw(10) << position << endl;
 }
 

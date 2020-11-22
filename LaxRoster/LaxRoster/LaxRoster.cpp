@@ -31,13 +31,19 @@ int main()
 	bool print = false;
 	bool repeat = false;
 
+	//Greet user and breifly explain program
+	cout << "Welcome to the lacrosse roster creator" << endl;
+	cout << "This program allow you to enter in as many players and coaches as you want " << endl;
+	cout << "Once your done adding players you can print the roster and then search for a players name by entering their number" << endl;
+	cout << endl;
+
 	//Loop for adding players and coaches
 	do {
 		print = playerOrCoach(Players, Coaches);
 
 	} while (print == false);
 
-	//Print roster whn user is done adding players and coaches
+	//Print sorted roster when user is done adding players and coaches
 	printRoster(Players, Coaches);
 
 	//Loop for searching for players
@@ -52,7 +58,6 @@ int main()
 bool playerOrCoach(vector<Player>& p, vector<Coach>& c) {
 	//Number inputted by user and data validation flag
 	int num;
-	bool valid;
 	bool print = false;
 
 
@@ -79,10 +84,6 @@ bool playerOrCoach(vector<Player>& p, vector<Coach>& c) {
 		case 3:
 			print = true;
 			break;
-		default :
-			cout << "The number you entered was incorrect, please try again." << endl;
-			cout << endl;
-			valid = false;
 		}
 
 	return print;
@@ -176,10 +177,13 @@ void printRoster(vector<Player>& p, vector<Coach> c) {
 	//Sort players
 	sortRoster(p);
 
+	cout << "*****************************************************" << endl;
+	cout << "*****************************************************" << endl;
+
 	//Print players
 	cout << "Players" << endl;
 	cout << "-----------------------------------------------------" << endl;
-	cout << left << setw(20) << "Name" << setw(8) << "Number" << setw(8) << "Year" << setw(10) << "Position" <<endl;
+	cout << left << setw(20) << "Name" << setw(8) << "Number" << setw(11) << "Year" << setw(10) << "Position" <<endl;
 	cout << "-----------------------------------------------------" << endl;
 	for (unsigned int i = 0; i < p.size(); i++) {
 		p.at(i).printPlayer();
@@ -195,6 +199,8 @@ void printRoster(vector<Player>& p, vector<Coach> c) {
 	for (unsigned int i = 0; i < c.size(); i++) {
 		c.at(i).printCoach();
 	}
+	cout << "*****************************************************" << endl;
+	cout << "*****************************************************" << endl;
 	cout << endl;
 	cout << endl;
 	cout << endl;
@@ -246,7 +252,7 @@ int findPlayer(vector<Player> p, int lower, int upper, int num) {
 	return -1;
 }
 
-//Allows user to enter players number and find there name
+//Allows user to enter players number and find their name
 bool searchForPlayer(vector<Player> p) {
 	//Delare variables
 	int playerNum;
@@ -261,7 +267,7 @@ bool searchForPlayer(vector<Player> p) {
 	cout << "1: Yes" << endl;
 	cout << "2: No" << endl;
 	cout << "Enter Number :" << endl;
-	cin >> input;
+	input = validNumber(2);
 	cout << endl;
 
 	//Check user decision
@@ -269,7 +275,7 @@ bool searchForPlayer(vector<Player> p) {
 	{
 	case 1:
 		cout << "Please enter a players number to get there name: " << endl;
-		cin >> playerNum;
+		playerNum = validNumber(-1);
 		playerIndex = findPlayer(p, 0, p.size() - 1, playerNum);
 		cout << endl;
 
@@ -282,25 +288,19 @@ bool searchForPlayer(vector<Player> p) {
 			cout << playerNum << ":" << " " << p.at(playerIndex).getName() << endl;
 			cout << endl;
 		}
-
-
 		repeat = true;
+
 		break;
 	case 2:
 		cout << "Program will now close" << endl;
 		repeat = false;
-		break;
-	default:
-		cout << "Invalid entry, please try again" << endl;
-		cout << endl;
-		repeat = true;
 		break;
 	}
 
 	return repeat;
 }
 
-//Validates that a user has entered a number
+//Validates that a user has entered a number, not a char or string 
 int validNumber(int max) {
 	int x;
 	cin >> x;
@@ -315,7 +315,7 @@ int validNumber(int max) {
 	return validMenuNumber(max, x);
 }
 
-//Validates if a inputed number for a menu option is to large or negative
+//Validates if a inputed number for a menu option is to large or small
 int validMenuNumber(int max, int num) {
 	//If number is valid (A value of -1 for nax means any value is valid
 	if (((num >= 1) && (num <= max)) || (max == -1)) {
