@@ -16,8 +16,10 @@ void addCoach(vector<Coach>&);
 void printRoster(vector<Player>&, vector<Coach>);
 void sortRoster(vector<Player>&);
 void switchSpot(Player&, Player&);
-int findPlayer(vector<Player>, int, int, int);\
+int findPlayer(vector<Player>, int, int, int);
 bool searchForPlayer(vector<Player>);
+int validNumber(int);
+int validMenuNumber(int, int);
 
 
 //Main function
@@ -53,9 +55,6 @@ bool playerOrCoach(vector<Player>& p, vector<Coach>& c) {
 	bool valid;
 	bool print = false;
 
-	//Data validation loop
-	do {
-		valid = true;
 
 		//Menu
 		cout << "Would you like to add a player or a coach to the roster?" << endl;
@@ -66,7 +65,7 @@ bool playerOrCoach(vector<Player>& p, vector<Coach>& c) {
 		cout << "Enter Number: " << endl;
 
 		//Input
-		cin >> num;
+		num = validNumber(3);
 		cout << endl;
 
 		//Check input
@@ -85,8 +84,6 @@ bool playerOrCoach(vector<Player>& p, vector<Coach>& c) {
 			cout << endl;
 			valid = false;
 		}
-
-	} while (valid == false);
 
 	return print;
 
@@ -109,7 +106,7 @@ void addPlayer(vector<Player>& p) {
 
 	//Player number
 	cout << "Please enter the players number: " << endl;
-	cin >> number;
+	number = validNumber(-1);
 	temp.setNum(number);
 	cout << endl;
 
@@ -122,7 +119,7 @@ void addPlayer(vector<Player>& p) {
 	cout << "4: Defense" << endl;
 	cout << "5: Goalie" << endl;
 	cout << "Enter Number: " << endl;
-	cin >> input;
+	input = validNumber(5);
 	temp.setPosition(input);
 	cout << endl;
 	
@@ -135,7 +132,7 @@ void addPlayer(vector<Player>& p) {
 	cout << "4: Senior" << endl;
 	cout << "5: Graduate" << endl;
 	cout << "Enter Number: " << endl;
-	cin >> input;
+	input = validNumber(5);
 	temp.setYear(input);
 	cout << endl;
 
@@ -165,7 +162,7 @@ void addCoach(vector<Coach>& c) {
 	cout << "2: Assistant" << endl;
 	cout << "3: Graduate" << endl;
 	cout << "Enter Number: " << endl;
-	cin >> input;
+	input = validNumber(3);
 	temp.setPosition(input);
 	cout << endl;
 
@@ -184,7 +181,7 @@ void printRoster(vector<Player>& p, vector<Coach> c) {
 	cout << "-----------------------------------------------------" << endl;
 	cout << left << setw(20) << "Name" << setw(8) << "Number" << setw(8) << "Year" << setw(10) << "Position" <<endl;
 	cout << "-----------------------------------------------------" << endl;
-	for (int i = 0; i < p.size(); i++) {
+	for (unsigned int i = 0; i < p.size(); i++) {
 		p.at(i).printPlayer();
 	}
 
@@ -195,7 +192,7 @@ void printRoster(vector<Player>& p, vector<Coach> c) {
 	cout << "-----------------------------------------------------" << endl;
 	cout << left << setw(20) << "Name" << "Position" << endl;
 	cout << "-----------------------------------------------------" << endl;
-	for (int i = 0; i < c.size(); i++) {
+	for (unsigned int i = 0; i < c.size(); i++) {
 		c.at(i).printCoach();
 	}
 	cout << endl;
@@ -209,9 +206,9 @@ void sortRoster(vector<Player>& p) {
 	//Declare variables
 	int minIndex;
 
-	for (int i = 0; i < p.size(); i++) { 
+	for (unsigned int i = 0; i < p.size(); i++) { 
 		minIndex = i;
-		for (int x = 0; x < p.size(); x++) {
+		for (unsigned int x = 0; x < p.size(); x++) {
 			if (p.at(x).getNum() > p.at(minIndex).getNum()) {
 				minIndex = x;
 			}
@@ -301,4 +298,32 @@ bool searchForPlayer(vector<Player> p) {
 	}
 
 	return repeat;
+}
+
+//Validates that a user has entered a number
+int validNumber(int max) {
+	int x;
+	cin >> x;
+
+	while (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Invalid input, enter a NUMBER: " << endl;
+		cin >> x;
+	}
+	return validMenuNumber(max, x);
+}
+
+//Validates if a inputed number for a menu option is to large or negative
+int validMenuNumber(int max, int num) {
+	//If number is valid (A value of -1 for nax means any value is valid
+	if (((num >= 1) && (num <= max)) || (max == -1)) {
+		return num;
+	}
+	else
+	{
+		cout << "Please enter a valid number according to the menu above: " << endl;
+		return validNumber(max);
+	}
 }
