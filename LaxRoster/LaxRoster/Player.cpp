@@ -16,10 +16,10 @@ Player::Player() {
 
 ///// Mutators /////
 
-//Sets players number
+//Sets player number
 void Player::setNum(int nmbr) { num = nmbr; }
 
-//Sets players year
+//Sets player year
 void Player::setYear(int input) { 
 	switch (input) {
 	case 1:
@@ -72,6 +72,8 @@ int Player::getNum() { return num; }
 
 //Returns player year
 string Player::getYear() { return year; }
+
+///// Output /////
 
 //Prints players info
 void Player::printPlayer() {

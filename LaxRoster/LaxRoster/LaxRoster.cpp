@@ -13,8 +13,10 @@ bool playerOrCoach(vector<Player>&, vector<Coach>&);
 void addPlayer(vector<Player>&);
 void addCoach(vector<Coach>&);
 void printRoster(vector<Player>, vector<Coach>);
+void sortRoster(vector<Player>&);
+void switchSpot(Player&, Player&);
 
-//Main Meathod 
+//Main function
 int main()
 {
 	//Declare variables
@@ -152,6 +154,9 @@ void addCoach(vector<Coach>& c) {
 
 //Prints roster 
 void printRoster(vector<Player> p, vector<Coach> c) {
+	//Sort players
+	sortRoster(p);
+
 	//Print players
 	cout << "Players" << endl;
 	cout << "---------------------------" << endl;
@@ -168,5 +173,28 @@ void printRoster(vector<Player> p, vector<Coach> c) {
 		c.at(i).printCoach();
 	}
 
-
 }
+
+//Sort roster by number from least to greatest
+void sortRoster(vector<Player>& p) {
+	//Declare variables
+	int minIndex;
+
+	for (int i = 0; i < p.size(); i++) { 
+		minIndex = i;
+		for (int x = 0; x < p.size(); x++) {
+			if (p.at(x).getNum() > p.at(minIndex).getNum()) {
+				minIndex = x;
+			}
+			switchSpot(p.at(i), p.at(minIndex));
+		}
+	}
+
+}//Switches the place of 2 players on the roster.
+void switchSpot(Player& a, Player& b) {
+	Player temp;
+	temp = a;
+	a = b;
+	b = temp;
+}
+
